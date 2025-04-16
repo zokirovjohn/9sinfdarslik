@@ -350,8 +350,8 @@ export default function CommunityPage() {
                     </Card>
                   ))}
 
-                  {/* Pagination */}
-                  <div className="flex justify-center mt-8">
+{/* Pagination */}
+<div className="flex justify-center mt-8">
                     <nav className="flex items-center gap-1">
                       <Button variant="outline" size="icon" disabled>
                         <svg
@@ -359,4 +359,140 @@ export default function CommunityPage() {
                           width="16"
                           height="16"
                           viewBox="0 0 24 24"
-                \
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="h-4 w-4"
+                        >
+                          <path d="m15 18-6-6 6-6"></path>
+                        </svg>
+                        <span className="sr-only">Oldingi sahifa</span>
+                      </Button>
+                      <Button variant="outline" size="sm" className="bg-primary text-white hover:bg-primary/90">
+                        1
+                      </Button>
+                      <Button variant="outline" size="sm">
+                        2
+                      </Button>
+                      <Button variant="outline" size="sm">
+                        3
+                      </Button>
+                      <Button variant="outline" size="icon">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="h-4 w-4"
+                        >
+                          <path d="m9 18 6-6-6-6"></path>
+                        </svg>
+                        <span className="sr-only">Keyingi sahifa</span>
+                      </Button>
+                    </nav>
+                  </div>
+                </TabsContent>
+
+                {/* Popular Discussions */}
+                <TabsContent value="popular" className="space-y-4">
+                  {/* Add popular discussions content here */}
+                  <p>Eng mashhur mavzular hali mavjud emas.</p>
+                </TabsContent>
+
+                {/* Unanswered Discussions */}
+                <TabsContent value="unanswered" className="space-y-4">
+                  {/* Add unanswered discussions content here */}
+                  <p>Javobsiz mavzular hali mavjud emas.</p>
+                </TabsContent>
+
+                {/* My Topics */}
+                <TabsContent value="my_topics" className="space-y-4">
+                  {/* Add user's topics content here */}
+                  <p>Sizning mavzularingiz hali mavjud emas.</p>
+                </TabsContent>
+              </Tabs>
+            </div>
+
+            {/* Sidebar */}
+            <div className="space-y-6">
+              {/* Categories */}
+              <Card>
+                <CardContent className="p-0">
+                  <ul className="divide-y">
+                    {categories.map((category) => (
+                      <li key={category.id}>
+                        <Link
+                          href={`/community/category/${category.id}`}
+                          className="flex items-center justify-between py-3 px-6 hover:bg-slate-50 transition-colors"
+                        >
+                          <span>{category.name}</span>
+                          <Badge variant="outline">{category.count}</Badge>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+
+              {/* Popular Tags */}
+              <Card>
+                <CardContent>
+                  <div className="flex flex-wrap gap-2">
+                    {popularTags.map((tag) => (
+                      <Link key={tag.id} href={`/community/tag/${tag.id}`}>
+                        <Badge variant="outline" className="hover:bg-primary/5">
+                          {tag.name} ({tag.count})
+                        </Badge>
+                      </Link>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Top Contributors */}
+              <Card>
+                <CardContent className="space-y-4">
+                  {topContributors.map((contributor) => (
+                    <div key={contributor.name} className="flex items-center gap-3">
+                      <Avatar>
+                        <AvatarImage src={contributor.image || "/placeholder.svg"} alt={contributor.name} />
+                        <AvatarFallback>{contributor.name.charAt(0)}</AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <h4 className="font-medium">{contributor.name}</h4>
+                        <p className="text-sm text-slate-500">{contributor.role}</p>
+                      </div>
+                    </div>
+                  ))}
+                </CardContent>
+              </Card>
+
+              {/* Upcoming Events */}
+              <Card>
+                <CardContent className="space-y-4">
+                  {upcomingEvents.map((event) => (
+                    <div key={event.id} className="flex flex-col">
+                      <h4 className="font-medium">{event.title}</h4>
+                      <p className="text-sm text-slate-500">
+                        {event.date}, {event.time}
+                      </p>
+                      <p className="text-sm text-slate-500">Joylashuv: {event.location}</p>
+                      <p className="text-sm text-slate-500">Ishtirokchilar: {event.attendees}</p>
+                    </div>
+                  ))}
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </main>
+      </div>
+  )
+}
